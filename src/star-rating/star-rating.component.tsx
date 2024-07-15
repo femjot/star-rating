@@ -11,7 +11,11 @@ const StarRating = () => {
       {[...Array(maxRating)].map((_, idx) => {
         const ratingValue: number = idx + 1;
         return (
-          <p key={idx} onClick={() => setCurrentRating(ratingValue)}>
+          <p
+            key={idx}
+            onClick={() => setCurrentRating(ratingValue)}
+            className={`star ${ratingValue <= currentRating ? "active" : ""}`}
+          >
             {ratingValue}
           </p>
         );

@@ -5,6 +5,12 @@ const StarRating = () => {
   const [currentRating, setCurrentRating] = useState(0);
   const maxRating = 5;
 
+  const setCurrentRatingClickHandler = (ratingValue: number) => {
+    ratingValue === currentRating
+      ? setCurrentRating(0)
+      : setCurrentRating(ratingValue);
+  };
+
   return (
     <div className="star-rating-container">
       currentRating: {currentRating}
@@ -13,7 +19,7 @@ const StarRating = () => {
         return (
           <p
             key={idx}
-            onClick={() => setCurrentRating(ratingValue)}
+            onClick={() => setCurrentRatingClickHandler(ratingValue)}
             className={`star ${ratingValue <= currentRating ? "active" : ""}`}
           >
             {ratingValue}

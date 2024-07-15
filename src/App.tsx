@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import StarRating from "./star-rating.component";
+import StarRating from "./star-rating/star-rating.component";
 
 function App() {
   return (

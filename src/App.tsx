@@ -1,6 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 import StarRating from "./star-rating/star-rating.component";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <StarRating />
+        <StarRating maxRating={10} />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "./star-rating.styles.css";
 
-const StarRating = () => {
+const StarRating = ({ maxRating = 5 }) => {
   const [currentRating, setCurrentRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
-  const maxRating = 5;
 
-  const handleStarClick = (ratingValue: number) => {
-    ratingValue === currentRating
-      ? setCurrentRating(0)
-      : setCurrentRating(ratingValue);
-  };
+  const handleStarClick = useCallback(
+    (ratingValue: number) => {
+      ratingValue === currentRating
+        ? setCurrentRating(0)
+        : setCurrentRating(ratingValue);
+    },
+    [currentRating],
+  );
 
-  const handleStarMouseOver = (ratingValue: number) => {
+  const handleStarMouseOver = useCallback((ratingValue: number) => {
     setHoveredRating(ratingValue);
-  };
+  }, []);
 
-  const handleStarContainerMouseOut = () => {
+  const handleStarContainerMouseOut = useCallback(() => {
     setHoveredRating(0);
-  };
+  }, []);
 
   return (
     <div

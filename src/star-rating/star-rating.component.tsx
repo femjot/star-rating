@@ -1,7 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./star-rating.styles.css";
 
-const StarRating = ({ maxRating = 5 }) => {
+const StarRating = ({
+  maxRating = 5,
+  onChange = (currentRating: number) => {},
+}) => {
   const [currentRating, setCurrentRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
 
@@ -13,6 +16,10 @@ const StarRating = ({ maxRating = 5 }) => {
     },
     [currentRating],
   );
+
+  useEffect(() => {
+    onChange(currentRating);
+  }, [currentRating, onChange]);
 
   const handleStarMouseOver = useCallback((ratingValue: number) => {
     setHoveredRating(ratingValue);
@@ -27,7 +34,6 @@ const StarRating = ({ maxRating = 5 }) => {
       className="star-rating-container"
       onMouseOut={() => handleStarContainerMouseOut()}
     >
-      currentRating: {currentRating}
       hoverRating: {hoveredRating}
       {[...Array(maxRating)].map((_, idx) => {
         const ratingValue: number = idx + 1;
@@ -38,6 +44,7 @@ const StarRating = ({ maxRating = 5 }) => {
             onMouseOver={() => handleStarMouseOver(ratingValue)}
             className={`star ${ratingValue <= (hoveredRating || currentRating) ? "active" : ""}`}
           >
+            &#9733;
             {ratingValue}
           </p>
         );
